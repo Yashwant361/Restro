@@ -1,8 +1,8 @@
 import { useState } from 'react'
 import { BrowserRouter, Routes, Route } from 'react-router-dom'
 import './App.css'
-import Navbar from './components/Navbar'
-import Footer from './components/Footer'
+import MainLayout from './layouts/MainLayout'
+
 import Home from './pages/Home'
 import Menu from './pages/Menu'
 import About from './pages/About'
@@ -11,27 +11,24 @@ import Contact from './pages/contact'
 import Settings from './pages/Settings'
 import Table from './pages/Table'
 
-function App() {
 
+
+
+export default function App() {
   return (
-    <>
-      <BrowserRouter>
+    <BrowserRouter basename="/Restro">
+      <Routes>
 
-        <Navbar />
-        <Routes>
-          <Route path='/' element={<Home />} />
-          <Route path='/menu' element={<Menu />} />
-          <Route path='/about' element={<About />} />
-          <Route path='/table' element={<Table />} />
-          <Route path='/sales' element={<Sales />} />
-          <Route path='/contact' element={<Contact />} />
-          <Route path='/settings' element={<Settings />} />
-        </Routes>
+        <Route element={<MainLayout />}>
+          <Route path="/" element={<Home />} />
+          <Route path="/menu" element={<Menu />} />
+          <Route path="/sales" element={<Sales />} />
+          <Route path="/table" element={<Table />} />
+          <Route path="/contact" element={<Contact />} />
+          <Route path="/settings" element={<Settings />} />
+        </Route>
 
-        <Footer />
-      </BrowserRouter>
-    </>
-  )
+      </Routes>
+    </BrowserRouter>
+  );
 }
-
-export default App
